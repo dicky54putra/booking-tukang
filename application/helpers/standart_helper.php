@@ -1,6 +1,7 @@
 <?php
 
 const __ADMIN = 'admin/';
+const __HOME = 'home/';
 
 function is_logged_in()
 {
@@ -214,4 +215,9 @@ function selamat()
     }
 
     return $salam;
+}
+
+function icons($icon, $h = "30px")
+{
+    return '<img src="' . base_url('assets/img/icons/') . $icon . '" height="' . $h . '">';
 }

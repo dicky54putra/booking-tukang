@@ -6,8 +6,24 @@ class Home extends CI_Controller
 	{
 		parent::__construct();
 	}
+
 	public function index()
 	{
-		echo 'ppk';
+		$data = [
+			'title' => 'Dashboard'
+		];
+		$this->load->view(__HOME . 'template/header', $data);
+		$this->load->view(__HOME . 'home/index', $data);
+		$this->load->view(__HOME . 'template/footer');
+	}
+
+	public function login()
+	{
+		$data = [
+			'title' => 'Login'
+		];
+		$this->load->view(__HOME . 'template/header', $data);
+		$this->load->view(__HOME . 'home/login', $data);
+		$this->load->view(__HOME . 'template/footer');
 	}
 }

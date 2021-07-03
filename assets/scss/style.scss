@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+$green: #11E226;
+$white: #eeeeee;
+$black: #303030;
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.img-cover {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.img-contain {
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+}
+
+.form-control {
+    border: 0;
+    font-weight: 500;
+    background-color: #E5E5E5;
+    padding-block: .75rem;
+
+    &:focus {
+        color: #212529;
+        background-color: #E5E5E5;
+        outline: 0;
+        box-shadow: none;
+    }
+}
+
+header {
+    margin-top: 18px;
+
+    h1 {
+        font-size: 1.5rem;
+        line-height: 29.26rem;
+        font-weight: 500;
+
+        span {
+            font-weight: 700;
+        }
+    }
+
+    .cart {
+        height: 30px;
+        width: 30px;
+
+        span {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: $green;
+            border-radius: 50%;
+            height: 20px;
+            width: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: $black;
+        }
+    }
+}
+
+nav {
+    background: white;
+    box-shadow: 0px 4px 9px 4px rgba(0, 0, 0, 0.25);
+
+    ul {
+        padding-inline: 0;
+        padding-block: 15px;
+        margin: 0;
+        display: flex;
+        list-style-type: none !important;
+        justify-content: space-around;
+        align-items: center;
+
+        li {
+            a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: $black;
+                text-decoration: none;
+
+                &:hover {
+                    color: $black;
+                }
+            }
+
+            h5 {
+                display: none;
+                margin: 0;
+                margin-left: 6px;
+                font-weight: 600;
+
+                &.active {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+#banner {
+    margin-top: 1rem;
+
+    figure {
+        width: 100%;
+        height: 160px;
+        background-color: #C4C4C4;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+}
+
+.card {
+    cursor: pointer;
+    border: none;
+
+    a {
+        text-decoration: none !important;
+        color: $black !important;
+    }
+
+    figure {
+        width: 100%;
+        height: 160px;
+        background-color: #C4C4C4;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+}
+
+.login {
+    h1 {
+        font-size: 1.5rem;
+        font-weight: 500;
+
+        span {
+            font-weight: 700;
+        }
+    }
+}
