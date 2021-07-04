@@ -36,8 +36,15 @@ a {
           box-shadow: none;
 }
 
+main {
+  margin-top: 5.5rem;
+  margin-bottom: 4rem;
+}
+
 header {
-  margin-top: 18px;
+  padding-top: 18px;
+  padding-bottom: 8px;
+  background-color: white;
 }
 
 header h1 {
@@ -137,6 +144,8 @@ nav ul li h5.active {
   background-color: #C4C4C4;
   border-radius: 10px;
   overflow: hidden;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
 }
 
 .card {
@@ -145,6 +154,11 @@ nav ul li h5.active {
 }
 
 .card a {
+  display: inline-block;
+  width: 170px;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
   text-decoration: none !important;
   color: #303030 !important;
 }
@@ -154,7 +168,10 @@ nav ul li h5.active {
   height: 160px;
   background-color: #C4C4C4;
   border-radius: 10px;
+  margin-bottom: .5rem;
   overflow: hidden;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.25);
 }
 
 .login h1 {

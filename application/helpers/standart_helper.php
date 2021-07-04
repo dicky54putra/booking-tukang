@@ -221,3 +221,10 @@ function icons($icon, $h = "30px")
 {
     return '<img src="' . base_url('assets/img/icons/') . $icon . '" height="' . $h . '">';
 }
+
+function __homeTemplate($url, $data = null)
+{
+    get_instance()->load->view(__HOME . 'template/header', $data);
+    get_instance()->load->view(__HOME . $url, $data);
+    get_instance()->load->view(__HOME . 'template/footer');
+}

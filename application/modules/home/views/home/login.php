@@ -1,5 +1,5 @@
 <section class="login position-relative">
-    <div class="container-fluid vh-100 d-flex align-items-center justify-content-center">
+    <div class="container vh-100 d-flex align-items-center justify-content-center">
         <div class="row text-center justify-content-center">
             <div class="col-12 mb-3">
                 <h1 class="h1">Booking<span>Tukang</span></h1>
