@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title><?= (!empty($title)) ? $title . ' | ' : ''; ?>Elearning</title>
+    <title><?= (!empty($title)) ? $title . ' | ' : ''; ?>TukangApp</title>
     <link href="<?= base_url() ?>assets/css/styles.css" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="<?= base_url() ?>assets/assets/img/favicon.png" />
     <link rel="stylesheet" href="<?= base_url() ?>assets/css/darktheme.css" />
@@ -56,7 +56,7 @@ $substr_role = substr($role_, 0, -1);
 
 <body class="nav-fixed">
     <nav class="topnav navbar navbar-expand shadow navbar-light bg-white" id="sidenavAccordion">
-        <a class="navbar-brand d-none d-sm-block" href="<?= base_url() . __ADMIN ?>">E <strong>Learning</strong></a>
+        <a class="navbar-brand d-none d-sm-block" href="<?= base_url() . __ADMIN ?>">Tukang <strong>App</strong></a>
         <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle" href="#"><i data-feather="menu"></i></button>
         <?= tanggal_indo(date('Y-m-d'), true) ?>
         <ul class="navbar-nav align-items-center ml-auto">
