@@ -26,4 +26,11 @@ class Home extends CI_Controller
 		$this->load->view(__HOME . 'home/login', $data);
 		$this->load->view(__HOME . 'template/footer');
 	}
+
+	public function register()
+	{
+		__homeTemplate('home/register', [
+			'title' => 'Register',
+		]);
+	}
 }

@@ -15,7 +15,11 @@
 </head>
 
 <body>
-    <?php if ($this->uri->segment(1) != 'login' && $this->uri->segment(1) != 'login') { ?>
-        <?= $this->load->view('heading') ?>
-        <?= $this->load->view('nav') ?>
+    <?php
+    if ($this->uri->segment(1) != 'login') {
+        if ($this->uri->segment(1) != 'register') {
+    ?>
+            <?= $this->load->view('heading') ?>
+            <?= $this->load->view('nav') ?>
+        <?php } ?>
     <?php } ?>
