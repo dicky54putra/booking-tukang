@@ -30,7 +30,10 @@ $menus = [
         <ul>
             <?php
             foreach ($menus as $menu) {
-                $ifActive = ($this->uri->segment(1) == $menu['label']);
+
+                $uri = $this->uri->segment(1) ?? 'home';
+                $ifActive = ($uri == $menu['label']);
+
                 $isActive = ($ifActive) ? 'active' : '';
                 $icon = ($ifActive) ? $menu['icon_'] : $menu['icon'];
             ?>
