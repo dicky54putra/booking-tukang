@@ -15,7 +15,7 @@
                     </tr>
                     <tr>
                         <td style="width: 50%;">Nama</td>
-                        <td style="text-align: right;">Dicky</td>
+                        <td style="text-align: right;"><?= $user->nama ?></td>
                     </tr>
                     <tr>
                         <td>No Hp</td>
@@ -60,7 +60,11 @@
                     </tr>
                 </table>
 
-                <a href="" class="btn btn-primary w-100 mt-3 mb-3">PERBARUI DATA</a>
+                <a href="" class="btn btn-primary w-100 mt-3">PERBARUI DATA</a>
+                <form action="<?= base_url('logout') ?>" method="post">
+                    <input type="hidden" name="isPost" value="true">
+                    <button type="submit" class="btn btn-danger w-100 mt-3 mb-3">LOGOUT</button>
+                </form>
             </div>
         </div>
 

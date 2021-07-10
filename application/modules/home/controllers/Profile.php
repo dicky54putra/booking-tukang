@@ -5,13 +5,16 @@ class Profile extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        isLoginUser();
     }
 
     public function index()
     {
+        $user = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row();
         __homeTemplate('profile/index', [
             'title' => 'Dashboard',
-            'titleApp' => 'Profile Tukang'
+            'titleApp' => 'Profile Tukang',
+            'user' => $user
         ]);
     }
 }

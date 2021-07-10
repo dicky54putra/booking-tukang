@@ -58,3 +58,4 @@ $route['register'] = 'home/register';
 $route['profile'] = 'home/profile';
 $route['history'] = 'home/history';
 $route['search'] = 'home/search';
+$route['logout'] = 'home/logout';

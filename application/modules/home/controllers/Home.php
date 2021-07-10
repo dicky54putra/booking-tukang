@@ -9,22 +9,21 @@ class Home extends CI_Controller
 
 	public function index()
 	{
-		$data = [
+		isLoginUser();
+		__homeTemplate('home/index', [
 			'title' => 'Dashboard'
-		];
-		$this->load->view(__HOME . 'template/header', $data);
-		$this->load->view(__HOME . 'home/index', $data);
-		$this->load->view(__HOME . 'template/footer');
+		]);
 	}
 
 	public function login()
 	{
-		$data = [
+		$post = $this->input->post();
+		if ($post) {
+			$this->_login();
+		}
+		__homeTemplate('home/login', [
 			'title' => 'Login'
-		];
-		$this->load->view(__HOME . 'template/header', $data);
-		$this->load->view(__HOME . 'home/login', $data);
-		$this->load->view(__HOME . 'template/footer');
+		]);
 	}
 
 	public function register()
@@ -32,5 +31,44 @@ class Home extends CI_Controller
 		__homeTemplate('home/register', [
 			'title' => 'Register',
 		]);
+	}
+	public function logout()
+	{
+		if ($this->input->post('isPost') === 'true') {
+			$data = [
+				'username' => 'username',
+				'role' => 'role',
+				'login' => '',
+			];
+			$this->session->unset_userdata($data);
+			redirect('login');
+		}
+	}
+
+	private function _login()
+	{
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		$user = $this->db->get_where('user', ['username' => $username])->row();
+
+		if (!empty($user)) {
+			if (password_verify($password, $user->password)) {
+				$data = [
+					'id_user' => $user->id_user,
+					'username' => $user->username,
+					'id_role' => $user->role,
+					'login' => 'app',
+				];
+				$this->session->set_userdata($data);
+				// redirect($this->input->post('url'));
+				redirect('home');
+			} else {
+				$this->session->set_flashdata('message', '<div class="alert alert-danger alert-solid alert-dismissible fade show" role="alert"><h5 class="alert-heading">Gagal</h5>Username atau Password salah!, silahkan periksa username dan password anda kembali !<button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
+				redirect('login');
+			}
+		} else {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger alert-solid alert-dismissible fade show" role="alert"><h5 class="alert-heading">Gagal</h5>Username atau password salah!, silahkan periksa username dan password anda kembali !<button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
+			redirect('login');
+		}
 	}
 }

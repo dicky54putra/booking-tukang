@@ -5,9 +5,11 @@
                 <h1 class="h1">Booking<span>Tukang</span></h1>
             </div>
             <div class="col-10">
-                <input type="text" class="form-control mb-3" id="username" placeholder="Username" name="username">
-                <input type="text" class="form-control mb-3" id="username" placeholder="Username" name="password">
-                <button type="submit" class="btn btn-primary w-100">LOGIN</button>
+                <form action="<?= base_url('login') ?>" method="post" id="formlogin" name="formlogin" class="needs-validation" novalidate>
+                    <input type="text" class="form-control mb-3" id="username" placeholder="Username" name="username">
+                    <input type="password" class="form-control mb-3" id="password" placeholder="Password" name="password">
+                    <button type="submit" class="btn btn-primary w-100">LOGIN</button>
+                </form>
             </div>
         </div>
     </div>

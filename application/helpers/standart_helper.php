@@ -31,6 +31,14 @@ function is_logged_in()
     }
 }
 
+function isLoginUser()
+{
+    $ci = get_instance();
+    if (!$ci->session->userdata('login') && $ci->session->userdata('login') !== 'app') {
+        redirect('login');
+    }
+}
+
 function send_email($send)
 {
     return '<!DOCTYPE html>
