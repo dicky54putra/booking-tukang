@@ -17,4 +17,15 @@ class Profile extends CI_Controller
             'user' => $user
         ]);
     }
+
+    public function cart()
+    {
+        $user = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row();
+        echo 'ok';
+        __homeTemplate('profile/cart', [
+            'title' => 'Dashboard',
+            'titleApp' => 'Cart Tukang',
+            'user' => $user
+        ]);
+    }
 }

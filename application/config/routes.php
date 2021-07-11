@@ -56,6 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'home/login';
 $route['register'] = 'home/register';
 $route['profile'] = 'home/profile';
+$route['profile/cart'] = 'home/profile/cart';
 $route['history'] = 'home/history';
 $route['search'] = 'home/search';
 $route['logout'] = 'home/logout';

@@ -5,7 +5,7 @@
             <div class="row justify-content-center">
                 <div class="col-12">
                     <figure>
-                        <img class="img-cover" src="" alt="" srcset="">
+                        <img class="img-cover" src="<?= base_url('assets/img/banner.png') ?>" alt="" srcset="">
                     </figure>
                 </div>
             </div>
