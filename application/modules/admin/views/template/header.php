@@ -64,10 +64,10 @@ $substr_role = substr($role_, 0, -1);
                 Selamat <?= selamat() ?>, <?= $user->nama ?>
             </li>
             <li class="nav-item dropdown no-caret mr-3 dropdown-user float-right">
-                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid" src="<?= base_url('upload/user/') . $user->foto ?>" /></a>
+                <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid" src="<?= base_url('upload/user/') . get_foto($user->foto) ?>" /></a>
                 <div class="dropdown-menu dropdown-menu-right border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
                     <h6 class="dropdown-header d-flex align-items-center">
-                        <img class="dropdown-user-img" src="<?= base_url('upload/user/') . $user->foto ?>" />
+                        <img class="dropdown-user-img" src="<?= base_url('upload/user/') . get_foto($user->foto) ?>" />
                         <div class="dropdown-user-details">
                             <div class="dropdown-user-details-name"><?= $user->nama ?></div>
                             <div class="dropdown-user-details-email"><?= $user->username ?></div>

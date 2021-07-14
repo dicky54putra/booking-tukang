@@ -1,0 +1,227 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Jul 14, 2021 at 04:57 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.3.25
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `tukang`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu_navigasi`
+--
+
+CREATE TABLE `menu_navigasi` (
+  `id_menu_navigasi` int(11) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `url` varchar(255) NOT NULL,
+  `id_parent` int(11) NOT NULL,
+  `icon` varchar(255) NOT NULL,
+  `no_urut` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `menu_navigasi`
+--
+
+INSERT INTO `menu_navigasi` (`id_menu_navigasi`, `nama`, `url`, `id_parent`, `icon`, `no_urut`, `status`) VALUES
+(1, 'Master Data', '#', 0, 'database', 2, 1),
+(2, 'Sidebar Menu', 'menu_navigasi', 1, '#', 1, 1),
+(3, 'User', 'user', 1, '#', 2, 1),
+(4, 'Home', 'auth', 0, 'home', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pemesan`
+--
+
+CREATE TABLE `pemesan` (
+  `id_pemesan` int(11) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `jk` tinyint(1) DEFAULT NULL,
+  `alamat` text NOT NULL,
+  `no_hp` varchar(20) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `id_user` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pemesan`
+--
+
+INSERT INTO `pemesan` (`id_pemesan`, `nama`, `jk`, `alamat`, `no_hp`, `email`, `id_user`) VALUES
+(1, 'Dicky', 1, '123', '109', 'saputradicky705@gmail.com', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `proyek`
+--
+
+CREATE TABLE `proyek` (
+  `id_proyek` int(11) NOT NULL,
+  `jenis_proyek` tinyint(1) NOT NULL,
+  `tanggal_awal` date NOT NULL,
+  `tanggal_akhir` date NOT NULL,
+  `fee` double(100,2) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `lokasi` varchar(255) NOT NULL,
+  `id_tukang` int(11) NOT NULL,
+  `id_pemesan` int(11) NOT NULL,
+  `skor` int(11) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tr_menu_navigasi`
+--
+
+CREATE TABLE `tr_menu_navigasi` (
+  `id_menu_navigasi` int(11) NOT NULL,
+  `id_role` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tr_menu_navigasi`
+--
+
+INSERT INTO `tr_menu_navigasi` (`id_menu_navigasi`, `id_role`) VALUES
+(1, 1),
+(2, 1),
+(3, 1),
+(4, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tukang`
+--
+
+CREATE TABLE `tukang` (
+  `id_tukang` int(11) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `jk` tinyint(1) NOT NULL,
+  `alamat` text NOT NULL,
+  `tanggal_lahir` date NOT NULL,
+  `no_hp` varchar(20) NOT NULL,
+  `fee_per_day` double(100,2) NOT NULL,
+  `skills` varchar(255) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `id_user` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id_user` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `role` tinyint(1) NOT NULL,
+  `foto` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `role`, `foto`) VALUES
+(1, 'admin', '$2y$10$FNOtkHsYDXwq8D277Si.Y.6iObVMqInK/QoL2bsclA.et2/E9bKGG', 'Admin', 1, 'avatar5.png'),
+(6, 'rezha05', '$2y$10$aeYz4ANkR1VxUbremauBsu4ntl2FSijbdOlWri82ddL/Egdinw5fy', 'Dicky', 2, 'def.png');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `menu_navigasi`
+--
+ALTER TABLE `menu_navigasi`
+  ADD PRIMARY KEY (`id_menu_navigasi`);
+
+--
+-- Indexes for table `pemesan`
+--
+ALTER TABLE `pemesan`
+  ADD PRIMARY KEY (`id_pemesan`);
+
+--
+-- Indexes for table `proyek`
+--
+ALTER TABLE `proyek`
+  ADD PRIMARY KEY (`id_proyek`);
+
+--
+-- Indexes for table `tukang`
+--
+ALTER TABLE `tukang`
+  ADD PRIMARY KEY (`id_tukang`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `menu_navigasi`
+--
+ALTER TABLE `menu_navigasi`
+  MODIFY `id_menu_navigasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `pemesan`
+--
+ALTER TABLE `pemesan`
+  MODIFY `id_pemesan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `proyek`
+--
+ALTER TABLE `proyek`
+  MODIFY `id_proyek` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tukang`
+--
+ALTER TABLE `tukang`
+  MODIFY `id_tukang` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

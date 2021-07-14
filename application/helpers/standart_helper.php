@@ -22,6 +22,9 @@ function is_logged_in()
         ]);
         $userAccess->row();
 
+        if ($id_role != 1) {
+            redirect('admin/blocked');
+        }
         if ($ci->uri->segment(1) == 'admin' && $menu == '') {
             return true;
         }
@@ -235,4 +238,9 @@ function __homeTemplate($url, $data = null)
     get_instance()->load->view(__HOME . 'template/header', $data);
     get_instance()->load->view(__HOME . $url, $data);
     get_instance()->load->view(__HOME . 'template/footer');
+}
+
+function get_foto($foto)
+{
+    return file_exists(base_url('upload/user/' . $foto)) ? $foto : 'def.png';
 }

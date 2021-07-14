@@ -5,6 +5,8 @@ class Home extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Home_model');
+		$this->load->model('Pemesan_model');
 	}
 
 	public function index()
@@ -17,6 +19,9 @@ class Home extends CI_Controller
 
 	public function login()
 	{
+		if ($this->session->userdata('login')) {
+			redirect('home');
+		}
 		$post = $this->input->post();
 		if ($post) {
 			$this->_login();
@@ -28,6 +33,13 @@ class Home extends CI_Controller
 
 	public function register()
 	{
+		if ($this->session->userdata('login')) {
+			redirect('home');
+		}
+		$post = $this->input->post();
+		if ($post) {
+			$this->_register();
+		}
 		__homeTemplate('home/register', [
 			'title' => 'Register',
 		]);
@@ -37,8 +49,9 @@ class Home extends CI_Controller
 		if ($this->input->post('isPost') === 'true') {
 			$data = [
 				'username' => 'username',
-				'role' => 'role',
-				'login' => '',
+				'login' => 'login',
+				'id_user' => 'id_user',
+				'id_role' => 'id_role'
 			];
 			$this->session->unset_userdata($data);
 			redirect('login');
@@ -49,6 +62,7 @@ class Home extends CI_Controller
 	{
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
+
 		$user = $this->db->get_where('user', ['username' => $username])->row();
 
 		if (!empty($user)) {
@@ -70,5 +84,28 @@ class Home extends CI_Controller
 			$this->session->set_flashdata('message', '<div class="alert alert-danger alert-solid alert-dismissible fade show" role="alert"><h5 class="alert-heading">Gagal</h5>Username atau password salah!, silahkan periksa username dan password anda kembali !<button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
 			redirect('login');
 		}
+	}
+	private function _register()
+	{
+		$nama = $this->input->post('nama');
+		$email = $this->input->post('email');
+		$no_hp = $this->input->post('no_hp');
+		$alamat = $this->input->post('alamat');
+
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+
+		$this->db->trans_start();
+		$this->Home_model->addUser($nama, $username, $password);
+		$user = $this->db->order_by('id_user', 'DESC')->get('user', 1)->row();
+		$this->Pemesan_model->add($nama, $email, $no_hp, $alamat, $user->id_user);
+		$this->db->trans_complete();
+
+		if ($this->db->trans_status() === FALSE) {
+			$this->session->set_flashdata('message', '<div class="alert alert-danger alert-solid alert-dismissible fade show" role="alert"><h5 class="alert-heading">Gagal</h5>Koneksi terputus !<button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
+			redirect('register');
+		}
+
+		$this->_login();
 	}
 }

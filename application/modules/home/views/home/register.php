@@ -5,7 +5,7 @@
                 <h1 class="h1">Booking<span>Tukang</span></h1>
             </div>
             <div class="col-10">
-                <form action="" method="post" id="formRegister" name="formRegister" class="needs-validation" novalidate>
+                <form action="<?= base_url('register') ?>" method="post" id="formRegister" name="formRegister" class="needs-validation" novalidate>
                     <div class="one">
                         <div class="input-group has-validation">
                             <input type="text" class="form-control mb-3" id="nama" placeholder="Nama" name="nama" required>
@@ -25,8 +25,8 @@
 
                     <div class="two" style="display: none;">
                         <input type="text" class="form-control mb-3" id="username" placeholder="Username" name="username">
-                        <input type="password" class="form-control mb-3" id="password" placeholder="Password" name="password" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.password_repeat.pattern = this.value;">
-                        <input type="password" class="form-control mb-3" id="password_repeat" placeholder="Ulangi Password" name="password_repeat" pattern="^\S{6,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');">
+                        <input type="password" class="form-control mb-3" id="password" placeholder="Password" name="password" pattern="^\S{3,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Must have at least 6 characters' : ''); if(this.checkValidity()) form.password_repeat.pattern = this.value;">
+                        <input type="password" class="form-control mb-3" id="password_repeat" placeholder="Ulangi Password" name="password_repeat" pattern="^\S{3,}$" onchange="this.setCustomValidity(this.validity.patternMismatch ? 'Please enter the same Password as above' : '');">
                         <button type="submit" id="submit" class="btn btn-primary w-100">DAFTAR</button>
                     </div>
                 </form>
