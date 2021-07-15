@@ -19,6 +19,6 @@ class Tukang_model extends CI_Model
 
     public function getBySearch($param)
     {
-        return $this->db->get_where($this->tabel, "nama LIKE %{$param}% OR alamat LIKE %{$param}% OR tanggal_lahir LIKE %{$param}% OR no_hp LIKE %{$param}% OR fee_per_day LIKE %{$param}% OR skills LIKE %{$param}%")->result();
+        return $this->db->get_where($this->tabel, "nama LIKE '%{$param}%' OR alamat LIKE '%{$param}%' OR tanggal_lahir LIKE '%{$param}%' OR no_hp LIKE '%{$param}%' OR fee_per_day LIKE '%{$param}%' OR skills LIKE '%{$param}%'")->result();
     }
 }

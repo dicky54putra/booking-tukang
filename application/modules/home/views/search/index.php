@@ -4,7 +4,7 @@
         <div class="row mt-3">
             <div class="col-12">
                 <form action="<?= base_url('search') ?>" method="get">
-                    <input type="text" class="form-control mb-3" id="search" placeholder="Cari Tukang" name="q">
+                    <input type="text" class="form-control mb-3" id="search" placeholder="Cari Tukang" name="q" value="<?= $_GET['q'] ?? '' ?>">
                 </form>
             </div>
         </div>

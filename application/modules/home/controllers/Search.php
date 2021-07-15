@@ -11,7 +11,7 @@ class Search extends CI_Controller
 
     public function index()
     {
-        $q = $this->input->post('q', true);
+        $q = $_GET['q'];
         if ($q) {
             $tukangs = $this->Tukang_model->getBySearch($q);
         } else {
