@@ -21,7 +21,7 @@ class Home_model extends CI_Model
 			'username' => $this->input->post('username'),
 		];
 
-		if ($password !== null) {
+		if (!empty($password)) {
 			$data['password'] = password_hash($password, PASSWORD_DEFAULT);
 		}
 		return $this->db->update($this->tabel, $data, ['id_user' => $id]);

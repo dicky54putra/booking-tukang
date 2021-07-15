@@ -7,19 +7,34 @@ class Home extends CI_Controller
 		parent::__construct();
 		$this->load->model('Home_model');
 		$this->load->model('Pemesan_model');
+		$this->load->model('Tukang_model');
 	}
 
 	public function index()
 	{
 		isLoginUser();
+
+		$tukangs = $this->Tukang_model->all(20);
 		__homeTemplate('home/index', [
-			'title' => 'Dashboard'
+			'title' => 'Dashboard',
+			'tukangs' => $tukangs,
+		]);
+	}
+
+	public function detail($id)
+	{
+		isLoginUser();
+
+		$tukang = $this->Tukang_model->getById($id);
+		__homeTemplate('home/detailTukang', [
+			'title' => 'Dashboard',
+			'tukang' => $tukang,
 		]);
 	}
 
 	public function login()
 	{
-		if ($this->session->userdata('login')) {
+		if ($this->session->userdata('login') == 'app') {
 			redirect('home');
 		}
 		$post = $this->input->post();

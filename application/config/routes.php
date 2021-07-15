@@ -55,6 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['login'] = 'home/login';
 $route['register'] = 'home/register';
+$route['home/(:num)'] = 'home/home/detail/$1';
 
 $route['profile'] = 'home/profile';
 $route['profile/cart'] = 'home/profile/cart';
@@ -62,5 +63,8 @@ $route['profile/edit'] = 'home/profile/edit';
 $route['profile/edit-akun'] = 'home/profile/editAkun';
 
 $route['history'] = 'home/history';
+
 $route['search'] = 'home/search';
+$route['search/(:num)'] = 'home/search/detail/$1';
+
 $route['logout'] = 'home/logout';

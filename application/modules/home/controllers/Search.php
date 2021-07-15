@@ -5,14 +5,33 @@ class Search extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Tukang_model');
         isLoginUser();
     }
 
     public function index()
     {
+        $q = $this->input->post('q', true);
+        if ($q) {
+            $tukangs = $this->Tukang_model->getBySearch($q);
+        } else {
+            $tukangs = $this->Tukang_model->all();
+        }
         __homeTemplate('search/index', [
             'title' => 'Dashboard',
-            'titleApp' => 'Cari Tukang'
+            'titleApp' => 'Cari Tukang',
+            'tukangs' => $tukangs
+        ]);
+    }
+
+    public function detail($id)
+    {
+        isLoginUser();
+
+        $tukang = $this->Tukang_model->getById($id);
+        __homeTemplate('home/detailTukang', [
+            'title' => 'Dashboard',
+            'tukang' => $tukang,
         ]);
     }
 }

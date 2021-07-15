@@ -6,7 +6,7 @@ const __HOME = 'home/';
 function is_logged_in()
 {
     $ci = get_instance();
-    if (!$ci->session->userdata('username')) {
+    if ($ci->session->userdata('login') == 'app') {
         redirect('admin/login');
     } else {
         // bahan 
@@ -22,9 +22,6 @@ function is_logged_in()
         ]);
         $userAccess->row();
 
-        if ($id_role != 1) {
-            redirect('admin/blocked');
-        }
         if ($ci->uri->segment(1) == 'admin' && $menu == '') {
             return true;
         }
@@ -37,7 +34,7 @@ function is_logged_in()
 function isLoginUser()
 {
     $ci = get_instance();
-    if (!$ci->session->userdata('login') && $ci->session->userdata('login') !== 'app') {
+    if ($ci->session->userdata('login') !== 'app') {
         redirect('login');
     }
 }
