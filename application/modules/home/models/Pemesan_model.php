@@ -2,6 +2,20 @@
 
 class Pemesan_model extends CI_Model
 {
+    public function all($limit = null)
+    {
+        if ($limit != null) {
+            return $this->db->get($this->tabel, $limit)->result();
+        } else {
+            return $this->db->get($this->tabel)->result();
+        }
+    }
+
+    public function getById($id)
+    {
+        return $this->db->get_where($this->tabel, ['id_' . $this->tabel => $id])->row();
+    }
+
     public function add($nama, $email, $no_hp, $alamat, $id_user, $jk = NULL)
     {
         return $this->db->insert('pemesan', [

@@ -7,6 +7,14 @@ a {
   text-decoration: none !important;
 }
 
+.fixed-bottom {
+  z-index: 1051 !important;
+}
+
+.offcanvas-bottom {
+  height: 75vh !important;
+}
+
 .img-cover {
   -o-object-fit: cover;
      object-fit: cover;

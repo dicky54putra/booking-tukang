@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 14, 2021 at 04:57 PM
+-- Generation Time: Jul 17, 2021 at 06:02 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.25
 
@@ -78,7 +78,7 @@ INSERT INTO `pemesan` (`id_pemesan`, `nama`, `jk`, `alamat`, `no_hp`, `email`, `
 
 CREATE TABLE `proyek` (
   `id_proyek` int(11) NOT NULL,
-  `jenis_proyek` tinyint(1) NOT NULL,
+  `jenis_proyek` tinyint(1) NOT NULL COMMENT '0: Harian, 1: Borongan',
   `tanggal_awal` date NOT NULL,
   `tanggal_akhir` date NOT NULL,
   `fee` double(100,2) NOT NULL,
@@ -86,9 +86,17 @@ CREATE TABLE `proyek` (
   `lokasi` varchar(255) NOT NULL,
   `id_tukang` int(11) NOT NULL,
   `id_pemesan` int(11) NOT NULL,
-  `skor` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `skor` int(11) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL COMMENT '1 = cart, 2 = on progress, 3 = done'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `proyek`
+--
+
+INSERT INTO `proyek` (`id_proyek`, `jenis_proyek`, `tanggal_awal`, `tanggal_akhir`, `fee`, `deskripsi`, `lokasi`, `id_tukang`, `id_pemesan`, `skor`, `status`) VALUES
+(1, 0, '2021-07-17', '2021-07-24', 700000.00, 'qwe', 'qwe', 1, 1, NULL, 1),
+(2, 0, '2021-07-10', '2021-07-23', 1040000.00, 'qqq', 'qqqq', 2, 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -130,6 +138,14 @@ CREATE TABLE `tukang` (
   `id_user` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tukang`
+--
+
+INSERT INTO `tukang` (`id_tukang`, `nama`, `jk`, `alamat`, `tanggal_lahir`, `no_hp`, `fee_per_day`, `skills`, `foto`, `id_user`) VALUES
+(1, 'Dicky', 1, 'Jepara', '2001-11-28', '089123123123', 100000.00, 'pasang kramik, bangun rumah, pasang genteng, perbaiki wc', '', NULL),
+(2, 'Riski', 1, 'Aceh', '1999-12-09', '087123123145', 80000.00, 'pasang genteng, ngecor , pondasi', '', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -151,7 +167,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `role`, `foto`) VALUES
 (1, 'admin', '$2y$10$FNOtkHsYDXwq8D277Si.Y.6iObVMqInK/QoL2bsclA.et2/E9bKGG', 'Admin', 1, 'avatar5.png'),
-(6, 'rezha05', '$2y$10$aeYz4ANkR1VxUbremauBsu4ntl2FSijbdOlWri82ddL/Egdinw5fy', 'Dicky', 2, 'def.png');
+(6, 'rezha05', '$2y$10$1hEu8JGdcjBEVWIkXRHQBeLx0CzCtk.dV/RP3RgxrVzkcCCsCHMV2', 'Dicky', 2, 'def.png');
 
 --
 -- Indexes for dumped tables
@@ -207,13 +223,13 @@ ALTER TABLE `pemesan`
 -- AUTO_INCREMENT for table `proyek`
 --
 ALTER TABLE `proyek`
-  MODIFY `id_proyek` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_proyek` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tukang`
 --
 ALTER TABLE `tukang`
-  MODIFY `id_tukang` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tukang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`

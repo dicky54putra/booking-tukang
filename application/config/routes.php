@@ -57,6 +57,8 @@ $route['login'] = 'home/login';
 $route['register'] = 'home/register';
 $route['home/(:num)'] = 'home/home/detail/$1';
 
+$route['proyek/add-to-cart'] = 'home/proyek/addToCart';
+
 $route['profile'] = 'home/profile';
 $route['profile/cart'] = 'home/profile/cart';
 $route['profile/edit'] = 'home/profile/edit';

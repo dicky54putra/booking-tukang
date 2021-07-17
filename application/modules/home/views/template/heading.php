@@ -7,7 +7,9 @@ $titleApp = explode(" ", ($titleApp ?? 'Booking Tukang'));
         <div class="cart position-relative d-block">
             <a href="<?= base_url('profile/cart') ?>">
                 <?= icons('cart.svg') ?>
-                <span>99</span>
+                <?php if (count_cart() != 0) { ?>
+                    <span><?= count_cart() ?></span>
+                <?php } ?>
             </a>
         </div>
     </div>

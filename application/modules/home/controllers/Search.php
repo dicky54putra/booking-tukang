@@ -28,9 +28,14 @@ class Search extends CI_Controller
         isLoginUser();
 
         $tukang = $this->Tukang_model->getById($id);
+        $skills = explode(",", $tukang->skills);
+        $pemesan = get_user_tabel();
+
         __homeTemplate('home/detailTukang', [
             'title' => 'Dashboard',
             'tukang' => $tukang,
+            'skills' => $skills,
+            'pemesan' => $pemesan,
         ]);
     }
 }

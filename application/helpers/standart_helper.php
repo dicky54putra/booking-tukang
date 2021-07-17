@@ -247,3 +247,40 @@ function rp($nominal)
     $hasil_rupiah = "Rp " . number_format($nominal, 2, ',', '.');
     return $hasil_rupiah;
 }
+
+function short_rp($nominal)
+{
+    // first strip any formatting;
+    $n = (0 + str_replace(",", "", $nominal));
+
+    // is this a number?
+    if (!is_numeric($n)) return false;
+
+    // now filter it;
+    if ($n >= 1000000000000) return round(($n / 1000000000000), 1) . ' t';
+    else if ($n >= 1000000000) return round(($n / 1000000000), 1) . ' m';
+    else if ($n >= 1000000) return round(($n / 1000000), 1) . ' jt';
+    else if ($n >= 1000) return round(($n / 1000), 1) . ' rb';
+
+    return number_format($n);
+}
+
+function get_user_tabel()
+{
+    $data = get_instance()->db->get_where('user', ['id_user' => get_instance()->session->userdata('id_user')])->row();
+    if ($data->role == 2) {
+        $user = get_instance()->db->get_where('pemesan', ['id_user' => get_instance()->session->userdata('id_user')])->row();
+    } else if ($data->role == 3) {
+        $user = get_instance()->db->get_where('user', ['id_user' => get_instance()->session->userdata('id_user')])->row();
+    }
+
+    return $user ?? null;
+}
+
+function count_cart()
+{
+    $user = get_user_tabel();
+
+    $count = get_instance()->db->where(['id_pemesan' => $user->id_pemesan])->count_all('proyek');
+    return $count;
+}

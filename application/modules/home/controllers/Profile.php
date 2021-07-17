@@ -7,6 +7,7 @@ class Profile extends CI_Controller
         parent::__construct();
         $this->load->model('Pemesan_model');
         $this->load->model('Home_model');
+        $this->load->model('Proyek_model');
         isLoginUser();
     }
 
@@ -28,12 +29,14 @@ class Profile extends CI_Controller
 
     public function cart()
     {
-        $user = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row();
-        echo 'ok';
+        $user = get_user_tabel();
+        $carts = $this->Proyek_model->getAll(1, $user->id_pemesan);
+
         __homeTemplate('profile/cart', [
             'title' => 'Dashboard',
             'titleApp' => 'Cart Tukang',
-            'user' => $user
+            'user' => $user,
+            'carts' => $carts,
         ]);
     }
 

@@ -27,11 +27,13 @@ class Home extends CI_Controller
 
 		$tukang = $this->Tukang_model->getById($id);
 		$skills = explode(",", $tukang->skills);
+		$pemesan = get_user_tabel();
 
 		__homeTemplate('home/detailTukang', [
 			'title' => 'Dashboard',
 			'tukang' => $tukang,
 			'skills' => $skills,
+			'pemesan' => $pemesan,
 		]);
 	}
 
