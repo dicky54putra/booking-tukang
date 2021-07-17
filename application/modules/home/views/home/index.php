@@ -4,8 +4,8 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <figure>
-                        <img class="img-cover" src="<?= base_url('assets/img/banner.png') ?>" alt="" srcset="">
+                    <figure class="d-flex align-items-center justify-content-center">
+                        <img class="img-cover" src="<?= base_url('assets/img/banner.png') ?>" alt="" srcset="" width="100">
                     </figure>
                 </div>
             </div>

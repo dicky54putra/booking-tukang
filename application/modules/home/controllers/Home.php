@@ -26,9 +26,12 @@ class Home extends CI_Controller
 		isLoginUser();
 
 		$tukang = $this->Tukang_model->getById($id);
+		$skills = explode(",", $tukang->skills);
+
 		__homeTemplate('home/detailTukang', [
 			'title' => 'Dashboard',
 			'tukang' => $tukang,
+			'skills' => $skills,
 		]);
 	}
 
@@ -100,6 +103,7 @@ class Home extends CI_Controller
 			redirect('login');
 		}
 	}
+
 	private function _register()
 	{
 		$nama = $this->input->post('nama');

@@ -145,7 +145,7 @@ nav ul li h5.active {
 
 #banner figure {
   width: 100%;
-  min-height: 160px;
+  min-height: 100px;
   background-color: #C4C4C4;
   border-radius: 10px;
   overflow: hidden;

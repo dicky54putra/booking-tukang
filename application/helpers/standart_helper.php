@@ -6,7 +6,7 @@ const __HOME = 'home/';
 function is_logged_in()
 {
     $ci = get_instance();
-    if ($ci->session->userdata('login') == 'app') {
+    if ($ci->session->userdata('login') == 'app' || !$ci->session->userdata('username')) {
         redirect('admin/login');
     } else {
         // bahan 
@@ -240,4 +240,10 @@ function __homeTemplate($url, $data = null)
 function get_foto($foto)
 {
     return file_exists(base_url('upload/user/' . $foto)) ? $foto : 'def.png';
+}
+
+function rp($nominal)
+{
+    $hasil_rupiah = "Rp " . number_format($nominal, 2, ',', '.');
+    return $hasil_rupiah;
 }

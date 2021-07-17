@@ -14,7 +14,7 @@ class Tukang_model extends CI_Model
 
     public function getById($id)
     {
-        return $this->db->get($this->tabel, ['id_tukang' => $id])->row();
+        return $this->db->get_where($this->tabel, ['id_tukang' => $id])->row();
     }
 
     public function getBySearch($param)
