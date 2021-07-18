@@ -53,7 +53,7 @@ class Home extends CI_Controller
 
 	public function register()
 	{
-		if ($this->session->userdata('login')) {
+		if ($this->session->userdata('login') == 'app') {
 			redirect('home');
 		}
 		$post = $this->input->post();
