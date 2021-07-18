@@ -284,3 +284,7 @@ function count_cart()
     $count = get_instance()->db->where(['id_pemesan' => $user->id_pemesan])->count_all('proyek');
     return $count;
 }
+function selected_option($param, $value)
+{
+    return ($param == $value) ? 'selected' : '';
+}

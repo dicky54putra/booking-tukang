@@ -12,11 +12,17 @@ class History extends CI_Controller
     public function index()
     {
         $user = get_user_tabel();
-        $carts = $this->Proyek_model->getAll(null, $user->id_pemesan);
+        if (!$this->input->post()) {
+            $carts = $this->Proyek_model->getAll(null, $user->id_pemesan);
+        } else {
+            $carts = $this->Proyek_model->getSearch();
+        }
+        $post = $this->input->post();
         __homeTemplate('history/index', [
             'title' => 'Dashboard',
             'titleApp' => 'Riwayat Pekerjaan',
-            'carts' => $carts
+            'carts' => $carts,
+            'post' => $post,
         ]);
     }
 }

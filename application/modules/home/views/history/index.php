@@ -56,11 +56,36 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body small">
-        <form action="<?= base_url('proyek/add-to-cart') ?>" method="post" id="formlogin" name="formlogin" class="needs-validation" novalidate>
-            <input type="hidden" class="form-control mb-3" name="url" value="<?= current_url() ?>">
-
+        <form action="<?= base_url('history') ?>" method="post" id="formlogin" name="formlogin" class="needs-validation" novalidate>
+            <input type="text" class="form-control mb-3" id="tanggal_awal" placeholder="Tanggal Awal" name="tanggal_awal" type="text" onMouseOver="(this.type='date')" onMouseOut="(this.type='text')" value="<?= $post['tanggal_awal'] ?? '' ?>">
+            <input type="text" class="form-control mb-3" id="tanggal_akhir" placeholder="Tanggal Akhir" name="tanggal_akhir" type="text" onMouseOver="(this.type='date')" onMouseOut="(this.type='text')" value="<?= $post['tanggal_akhir'] ?? '' ?>">
+            <textarea class="form-control mb-3" name="deskripsi" id="deskripsi" cols="30" rows="3" placeholder="Deskripsi"><?= $post['deskripsi'] ?? '' ?></textarea>
+            <textarea class="form-control mb-3" name="lokasi" id="lokasi" cols="30" rows="3" placeholder="Alamat"><?= $post['alamat'] ?? '' ?></textarea>
+            <input type="text" class="form-control mb-3" id="fee" placeholder="Total Fee" name="fee" value="<?= $post['fee'] ?? '' ?>">
+            <select name="status" class="form-control mb-3" id="status">
+                <option value="">Pilih Status</option>
+                <option value="1" <?= selected_option($post['status'], 1) ?>>Cart</option>
+                <option value="2" <?= selected_option($post['status'], 2) ?>>Proses</option>
+                <option value="3" <?= selected_option($post['status'], 3) ?>>Selesai</option>
+            </select>
 
             <button type="submit" class="btn btn-primary w-100 mb-5">CARI</button>
         </form>
     </div>
 </div>
+
+<script>
+    const tAwal = document.getElementById('tanggal_awal')
+    const tAkhir = document.getElementById('tanggal_akhir')
+
+    tAwal.oninput = () => {
+        const dateTAwal = new Date(tAwal.value)
+        const dateTAkhir = new Date(tAkhir.value)
+        tAkhir.setAttribute("min", tAwal.value)
+    }
+    tAkhir.oninput = () => {
+        const dateTAkhir = new Date(tAkhir.value)
+        const dateTAwal = new Date(tAwal.value)
+        tAwal.setAttribute("max", tAkhir.value)
+    }
+</script>

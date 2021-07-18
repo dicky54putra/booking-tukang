@@ -8,12 +8,17 @@ class Proyek_model extends CI_Model
         return $this->input->post($postData);
     }
 
-    public function getAll($status = null, $id_pemesan = null)
+    private function _query()
     {
         $this->db->select('proyek.*, tukang.nama as nama_tukang, pemesan.nama as nama_pemesan');
         $this->db->from($this->tabel);
         $this->db->join('tukang', 'tukang.id_tukang = proyek.id_tukang');
         $this->db->join('pemesan', 'pemesan.id_pemesan = proyek.id_pemesan');
+    }
+
+    public function getAll($status = null, $id_pemesan = null)
+    {
+        $this->_query();
         if ($status != null && $id_pemesan != null) {
             $this->db->where(['status' => $status, 'pemesan.id_pemesan' => $id_pemesan]);
             return $this->db->get()->result();
@@ -24,6 +29,27 @@ class Proyek_model extends CI_Model
             $this->db->where(['pemesan.id_pemesan' => $id_pemesan]);
             return $this->db->get()->result();
         }
+        return $this->db->get()->result();
+    }
+
+    public function getSearch()
+    {
+        $tanggal_awal = $this->_post('tanggal_awal');
+        $tanggal_akhir = $this->_post('tanggal_akhir');
+        $deskripsi = $this->_post('deskripsi');
+        $lokasi = $this->_post('lokasi');
+        $fee = $this->_post('fee');
+        $status = $this->_post('status');
+
+        $whereTanggaAwal = !empty($tanggal_awal) ? "AND tanggal_awal = '$tanggal_awal'" : '';
+        $whereTanggaAkhir = !empty($tanggal_akhir) ? "AND tanggal_akhir = '$tanggal_akhir'" : '';
+        $whereDeskripsi = !empty($deskripsi) ? "AND deskripsi LIKE '%{$deskripsi}%'" : '';
+        $whereLokasi = !empty($lokasi) ? "AND lokasi LIKE '%{$lokasi}%'" : '';
+        $whereFee = !empty($fee) ? "AND fee LIKE '%{$fee}%'" : '';
+        $whereStatus = !empty($status) ? "AND fee = '{$status}'" : '';
+
+        $this->db->where("1 {$whereTanggaAwal} {$whereTanggaAkhir} {$whereDeskripsi} {$whereLokasi} {$whereFee} {$whereStatus}");
+        $this->_query();
         return $this->db->get()->result();
     }
 

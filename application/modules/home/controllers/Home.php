@@ -83,7 +83,7 @@ class Home extends CI_Controller
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 
-		$user = $this->db->get_where('user', ['username' => $username])->row();
+		$user = $this->db->get_where('user', ['username' => $username, 'role !=' => 1])->row();
 
 		if (!empty($user)) {
 			if (password_verify($password, $user->password)) {
