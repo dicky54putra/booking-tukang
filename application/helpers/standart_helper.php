@@ -237,6 +237,13 @@ function __homeTemplate($url, $data = null)
     get_instance()->load->view(__HOME . 'template/footer');
 }
 
+function __adminTemplate($url, $data = null)
+{
+    get_instance()->load->view(__ADMIN . 'template/header', $data);
+    get_instance()->load->view(__ADMIN . $url, $data);
+    get_instance()->load->view(__ADMIN . 'template/footer');
+}
+
 function get_foto($foto)
 {
     return file_exists(base_url('upload/user/' . $foto)) ? $foto : 'def.png';

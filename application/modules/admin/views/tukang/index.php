@@ -15,7 +15,7 @@
 <div class="container-fluid" style="margin-top: -8rem;">
     <div class="card">
         <div class="card-body">
-            <a href="<?= base_url(__ADMIN . 'user/create') ?>" class="btn btn-primary btn-sm mb-3">
+            <a href="<?= base_url(__ADMIN . 'tukang/create') ?>" class="btn btn-primary btn-sm mb-3">
                 <i class="fa fa-plus"></i>&nbsp;Tambah
             </a>
             <?= $this->session->flashdata('message'); ?>
@@ -25,8 +25,9 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Username</th>
-                            <th>Role</th>
+                            <th>jenis kelamin</th>
+                            <th>no HP</th>
+                            <th>fee /day</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -39,11 +40,12 @@
                             <tr>
                                 <td><?= $no ?></td>
                                 <td><?= $val->nama ?></td>
-                                <td><?= $val->username ?></td>
-                                <td><?= ($val->role == 1) ? 'Admin' : $role2 = ($val->role == 2) ? 'Pemesan' : 'Tukang';  ?></td>
+                                <td><?= ($val->jk == 1) ? 'Laki-Laki' : 'Perempuan';  ?></td>
+                                <td><?= $val->no_hp ?></td>
+                                <td><?= rp($val->fee_per_day) ?></td>
                                 <td>
-                                    <a href="<?= base_url(__ADMIN . 'user/update/') . $val->id_user ?>" class="btn btn-datatable btn-icon btn-transparent-dark mr-2"><i class="fa fa-edit"></i></a>
-                                    <a href="<?= base_url(__ADMIN . 'user/delete/') . $val->id_user ?>" onclick="return confirm('Apakah anda yakin?')" class="btn btn-datatable btn-icon btn-transparent-dark"><i class="fa fa-trash"></i></a>
+                                    <a href="<?= base_url(__ADMIN . 'tukang/update/') . $val->id_tukang ?>" class="btn btn-datatable btn-icon btn-transparent-dark mr-2"><i class="fa fa-edit"></i></a>
+                                    <a href="<?= base_url(__ADMIN . 'tukang/delete/') . $val->id_tukang ?>" onclick="return confirm('Apakah anda yakin?')" class="btn btn-datatable btn-icon btn-transparent-dark"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         <?php } ?>

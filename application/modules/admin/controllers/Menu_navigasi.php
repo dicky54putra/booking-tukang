@@ -52,7 +52,7 @@ class Menu_navigasi extends CI_Controller
         if ($this->form_validation->run() == false) {
             $data = [
                 'title' => 'Tambah Data Menu Navigasi',
-                'action' => base_url('menu_navigasi/create')
+                'action' => base_url(__ADMIN . 'menu_navigasi/create')
             ];
             $this->load->view('template/header', $data);
             $this->load->view('menu_navigasi/create', $data);
@@ -60,7 +60,7 @@ class Menu_navigasi extends CI_Controller
         } else {
             $this->Menu_navigasi_model->Add();
             $mn = $this->db->order_by('id_menu_navigasi', 'DESC')->get('menu_navigasi')->row();
-            redirect('menu_navigasi/view/' . $mn->id_menu_navigasi);
+            redirect(__ADMIN . 'menu_navigasi/view/' . $mn->id_menu_navigasi);
         }
     }
 
@@ -69,7 +69,7 @@ class Menu_navigasi extends CI_Controller
         $data = [
             'title' => 'Ubah Data Menu Navigasi',
             'data' => $this->Menu_navigasi_model->getOne($id),
-            'action' => base_url('menu_navigasi/update/') . $id
+            'action' => base_url(__ADMIN . 'menu_navigasi/update/') . $id
         ];
         if (!empty($data['data'])) {
             $this->form_validation->set_rules('nama', 'Nama', 'required');
@@ -82,7 +82,7 @@ class Menu_navigasi extends CI_Controller
                 $this->load->view('template/footer');
             } else {
                 $this->Menu_navigasi_model->Update($id);
-                redirect('menu_navigasi/view/' . $id);
+                redirect(__ADMIN . 'menu_navigasi/view/' . $id);
             }
         } else {
             $this->load->view('auth/blocked');
@@ -92,7 +92,7 @@ class Menu_navigasi extends CI_Controller
     public function delete($id)
     {
         $this->Menu_navigasi_model->Delete($id);
-        redirect('menu_navigasi/index');
+        redirect(__ADMIN . 'menu_navigasi/index');
     }
 
     public function role($id)
@@ -107,7 +107,7 @@ class Menu_navigasi extends CI_Controller
             ];
             $this->db->insert('tr_menu_navigasi', $data);
         }
-        redirect('menu_navigasi/view/' . $id);
+        redirect(__ADMIN . 'menu_navigasi/view/' . $id);
     }
 
     public function status($id, $func = null)
@@ -119,11 +119,11 @@ class Menu_navigasi extends CI_Controller
             $this->db->where(['id_menu_navigasi' => $id])->update('menu_navigasi', ['status' => 0]);
         }
         if ($cek->id_parent > 0) {
-            redirect('menu_navigasi/view/' . $cek->id_parent);
+            redirect(__ADMIN . 'menu_navigasi/view/' . $cek->id_parent);
         } else if (!empty($func)) {
-            redirect('menu_navigasi/view/' . $cek->id_menu_navigasi);
+            redirect(__ADMIN . 'menu_navigasi/view/' . $cek->id_menu_navigasi);
         } else {
-            redirect('menu_navigasi');
+            redirect(__ADMIN . 'menu_navigasi');
         }
     }
 

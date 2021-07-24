@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 17, 2021 at 06:02 PM
+-- Generation Time: Jul 24, 2021 at 11:30 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.25
 
@@ -45,7 +45,10 @@ INSERT INTO `menu_navigasi` (`id_menu_navigasi`, `nama`, `url`, `id_parent`, `ic
 (1, 'Master Data', '#', 0, 'database', 2, 1),
 (2, 'Sidebar Menu', 'menu_navigasi', 1, '#', 1, 1),
 (3, 'User', 'user', 1, '#', 2, 1),
-(4, 'Home', 'auth', 0, 'home', 1, 1);
+(4, 'Home', 'admin', 0, 'home', 1, 1),
+(5, 'Proyek', 'proyek', 0, 'cog', 3, 1),
+(6, 'Data Tukang', 'tukang', 1, '#', 3, 1),
+(7, 'Data Pemesan', 'pemesan', 1, '#', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -95,8 +98,8 @@ CREATE TABLE `proyek` (
 --
 
 INSERT INTO `proyek` (`id_proyek`, `jenis_proyek`, `tanggal_awal`, `tanggal_akhir`, `fee`, `deskripsi`, `lokasi`, `id_tukang`, `id_pemesan`, `skor`, `status`) VALUES
-(1, 0, '2021-07-17', '2021-07-24', 700000.00, 'qwe', 'qwe', 1, 1, NULL, 1),
-(2, 0, '2021-07-10', '2021-07-23', 1040000.00, 'qqq', 'qqqq', 2, 1, NULL, 1);
+(1, 0, '2021-07-17', '2021-07-24', 700000.00, 'qwe', 'qwe', 1, 1, NULL, 2),
+(2, 0, '2021-07-10', '2021-07-23', 1040000.00, 'qqq', 'qqqq', 2, 1, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -117,7 +120,10 @@ INSERT INTO `tr_menu_navigasi` (`id_menu_navigasi`, `id_role`) VALUES
 (1, 1),
 (2, 1),
 (3, 1),
-(4, 1);
+(4, 1),
+(5, 1),
+(6, 1),
+(7, 1);
 
 -- --------------------------------------------------------
 
@@ -211,7 +217,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `menu_navigasi`
 --
 ALTER TABLE `menu_navigasi`
-  MODIFY `id_menu_navigasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_menu_navigasi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pemesan`
