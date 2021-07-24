@@ -61,6 +61,7 @@ $route['proyek/add-to-cart'] = 'home/proyek/addToCart';
 
 $route['profile'] = 'home/profile';
 $route['profile/cart'] = 'home/profile/cart';
+$route['profile/cart/(:any)'] = 'home/profile/pembayaran/$1';
 $route['profile/edit'] = 'home/profile/edit';
 $route['profile/edit-akun'] = 'home/profile/editAkun';
 

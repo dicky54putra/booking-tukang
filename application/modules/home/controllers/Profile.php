@@ -40,6 +40,13 @@ class Profile extends CI_Controller
         ]);
     }
 
+    public function pembayaran($id)
+    {
+        $id = explode('-', $id);
+        $this->Proyek_model->updateStatus($id, 2);
+        redirect('profile/cart');
+    }
+
     public function edit()
     {
         $data = $this->db->get_where('pemesan', ['id_user' => $this->session->userdata('id_user')])->row();

@@ -281,9 +281,10 @@ function count_cart()
 {
     $user = get_user_tabel();
 
-    $count = get_instance()->db->where(['id_pemesan' => $user->id_pemesan])->count_all('proyek');
+    $count = get_instance()->db->where(['id_pemesan' => $user->id_pemesan, 'status' => 1])->count_all_results('proyek');
     return $count;
 }
+
 function selected_option($param, $value)
 {
     return ($param == $value) ? 'selected' : '';

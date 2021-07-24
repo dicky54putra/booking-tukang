@@ -78,4 +78,20 @@ class Proyek_model extends CI_Model
         $this->db->insert($this->tabel, $data);
         redirect($url);
     }
+
+    public function updateStatus($id = [], $status)
+    {
+        $this->db->trans_start();
+        for ($i = 0; $i < count($id); $i++) {
+            $this->db->where('id_proyek', $id[$i]);
+            $this->db->update('proyek', ['status' => $status]);
+        }
+        $this->db->trans_complete();
+
+        if ($this->db->trans_status() === FALSE) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger alert-solid alert-dismissible fade show" role="alert"><h5 class="alert-heading">Gagal</h5>Koneksi terputus !<button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
+            redirect('profile/cart');
+        }
+        return true;
+    }
 }
