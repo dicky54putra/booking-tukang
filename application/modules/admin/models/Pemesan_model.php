@@ -21,7 +21,7 @@ class Pemesan_model extends CI_Model
         if ($user) {
             $this->db->delete('user', ['id_user' => $data->id_user]);
         }
-        $this->db->delete($this->table, ['id_' . $this->table => $id]);
+        $this->db->delete($this->tabel, ['id_' . $this->tabel => $id]);
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-solid alert-dismissible fade show" role="alert"><h5 class="alert-heading">Success</h5>Data tukang berhasil dihapus! <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
     }
 }

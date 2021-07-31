@@ -1,4 +1,4 @@
-<form method="POST" action="<?= $action ?>">
+<form method="POST" action="<?= $action ?>" enctype="multipart/form-data">
     <div class="form-group">
         <label for="nama">Nama</label>
         <input class="form-control form-control-solid" id="nama" name="nama" type="text" value="<?= (!empty($data->nama)) ? $data->nama : set_value('nama') ?>">

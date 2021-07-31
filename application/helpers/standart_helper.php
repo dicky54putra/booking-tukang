@@ -246,7 +246,19 @@ function __adminTemplate($url, $data = null)
 
 function get_foto($foto)
 {
-    return file_exists(base_url('upload/user/' . $foto)) ? $foto : 'def.png';
+    // return file_exists(base_url('upload/user/' . $foto)) ? $foto : 'def.png';
+    $ch = curl_init(base_url('upload/user/' . $foto));
+    curl_setopt($ch, CURLOPT_NOBODY, true);
+    curl_exec($ch);
+    $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+    if ($code == 200) {
+        $status = $foto;
+    } else {
+        $status = 'def.png';
+    }
+    curl_close($ch);
+    return $status;
 }
 
 function rp($nominal)

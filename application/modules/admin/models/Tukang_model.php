@@ -26,24 +26,31 @@ class Tukang_model extends CI_Model
             'skills' => $this->input->post('skills')
         ];
 
-        $config['upload_path']          = './upload/user/';
-        $config['allowed_types']        = 'gif|jpg|png|jpeg';
-        $config['file_name']            = date('Y/m/d/h/i') . '-' . $data['nama'];
-        $config['overwrite']            = true;
+        try {
+            $config['upload_path']          = './upload/user/';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['file_name']            = date('Y/m/d/h/i') . '-' . $data['nama'];
+            $config['overwrite']            = true;
 
-        $this->load->library('upload', $config);
-        if (!empty($_FILES['foto']['name'])) {
-            if ($this->upload->do_upload('foto')) {
-                $file_name = $this->upload->data("file_name");
-                $data['foto'] = $file_name;
-            } else {
-                $data['foto'] = "format file not supported";
+            $this->load->library('upload', $config);
+            if (!empty($_FILES['foto']['name'])) {
+                if ($this->upload->do_upload('foto')) {
+                    $file_name = $this->upload->data("file_name");
+                    $data['foto'] = $file_name;
+                } else {
+                    $data['foto'] = "format file not supported";
+                }
             }
+
+
+            $this->db->insert($this->tabel, $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-solid alert-dismissible fade show" role="alert"><h5 class="alert-heading">Success</h5>Data Tukang berhasil ditambahkan! <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
+        } catch (\Throwable $th) {
+            echo '<pre>';
+            var_dump($th->getMessage());
+            echo '</pre>';
+            die;
         }
-
-
-        $this->db->insert($this->tabel, $data);
-        $this->session->set_flashdata('message', '<div class="alert alert-success alert-solid alert-dismissible fade show" role="alert"><h5 class="alert-heading">Success</h5>Data Tukang berhasil ditambahkan! <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
     }
 
     public function Update($id)
@@ -95,7 +102,7 @@ class Tukang_model extends CI_Model
 
     public function Delete($id)
     {
-        $this->db->delete($this->table, ['id_' . $this->table => $id]);
+        $this->db->delete($this->tabel, ['id_' . $this->tabel => $id]);
         $this->session->set_flashdata('message', '<div class="alert alert-success alert-solid alert-dismissible fade show" role="alert"><h5 class="alert-heading">Success</h5>Data tukang berhasil dihapus! <button class="close" type="button" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div>');
     }
 }

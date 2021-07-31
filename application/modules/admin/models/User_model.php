@@ -5,7 +5,7 @@ class User_model extends CI_Model
 {
     public function getAll()
     {
-        return $this->db->get('user')->result();
+        return $this->db->get_where('user', ['role' => 1])->result();
     }
 
     public function getOne($id)

@@ -15,10 +15,13 @@
     <div class="container justify-content-center">
         <div class="row">
             <?php foreach ($tukangs as $tukang) { ?>
+                <?php
+                $foto = empty($tukang->foto) ? '404.png' : $tukang->foto;
+                ?>
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="card">
                         <figure class="d-flex align-items-center justify-content-center">
-                            <img src="<?= base_url('upload/user/' . get_foto($tukang->foto)) ?>" alt="" class="img-cover" srcset="" width="100">
+                            <img src="<?= base_url('upload/user/' . get_foto($foto)) ?>" alt="" class="img-cover" srcset="" width="100">
                         </figure>
                         <a href="<?= base_url('home/' . $tukang->id_tukang) ?>" class="h4 stretched-link"><?= $tukang->nama ?></a>
                     </div>

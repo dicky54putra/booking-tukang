@@ -2,8 +2,9 @@
     <div class="container">
         <div class="row justify-content-center mt-3 mb-5">
             <div class="col-md-6 text-center">
+                <?php $foto = empty($tukang->foto) ? '404.png' : $tukang->foto; ?>
                 <figure class="d-flex align-items-center justify-content-center">
-                    <img src="<?= base_url('upload/user/' . get_foto($tukang->foto)) ?>" alt="" class="img-cover" srcset="" width="100">
+                    <img src="<?= base_url('upload/user/' . get_foto($foto)) ?>" alt="" class="img-cover" srcset="" width="100">
                 </figure>
                 <h3 class="h3"><?= $tukang->nama ?? '' ?></h3>
                 <table class="table w-100">
