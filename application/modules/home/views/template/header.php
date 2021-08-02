@@ -20,7 +20,7 @@
     if ($this->uri->segment(1) != 'login') {
         if ($this->uri->segment(1) != 'register') {
     ?>
-            <?= $this->load->view('heading') ?>
+            <?php // $this->load->view('heading') ?>
             <?= $this->load->view('nav') ?>
         <?php } ?>
     <?php } ?>

@@ -1,53 +1,56 @@
-<main>
-    <div class="container">
-        <div class="row ">
-            <div class="col-12 d-flex justify-content-end">
-                <button class="btn btn-success px-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Filter</button>
-            </div>
+<br>
+<div class="container">
+    <!-- <div class="row ">
+        <div class="col-12 d-flex justify-content-end">
+            <button class="btn btn-success px-5" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Filter</button>
         </div>
-        <div class="row justify-content-center mt-3">
-            <div class="col-12 col-md-10 col-lg-8">
-                <?php $total = 0; ?>
-                <?php foreach ($carts as $cart) { ?>
-                    <?php
-                    $total += $cart->fee;
-                    if ($cart->status == 1) {
-                        $color = '#ffc107';
-                        $status = 'Cart';
-                    } else if ($cart->status == 2) {
-                        $color = '#0d6efd';
-                        $status = 'Proses';
-                    } else if ($cart->status == 3) {
-                        $color = '#198754';
-                        $status = 'Selesai';
-                    }
-                    ?>
-                    <hr>
-                    <table class="pt-2 w-100">
-                        <tr style="font-size: 12px;">
-                            <td><?= tanggal_indo($cart->tanggal_awal) ?> - <?= tanggal_indo($cart->tanggal_akhir) ?></td>
-                            <td style="text-align: right;">Total fee:</td>
-                        </tr>
-                        <tr style="font-size: 24px; font-weight: 600;">
-                            <td><?= $cart->deskripsi ?></td>
-                            <td style="text-align: right;"><?= short_rp($cart->fee) ?></td>
-                        </tr>
-                        <tr style="font-size: 15px;">
-                            <td>Tukang: <?= $cart->nama_tukang ?> | bos: <?= $cart->nama_pemesan ?></td>
-                            <td style="text-align: right; color:<?= $color ?>;"><?= $status ?></td>
-                        </tr>
-                    </table>
-                <?php } ?>
+    </div> -->
+    <div class="row justify-content-center mt-3">
+        <div class="col-12 col-md-10 col-lg-8">
+            <?php $total = 0; ?>
+            <?php foreach ($carts as $cart) { ?>
+                <?php
+                $total += $cart->fee;
+                if ($cart->status == 1) {
+                    $color = '#ffc107';
+                    $status = 'Order';
+                } else if ($cart->status == 2) {
+                    $color = '#0d6efd';
+                    $status = 'Proses';
+                } else if ($cart->status == 3) {
+                    $color = '#198754';
+                    $status = 'Selesai';
+                } else {
+                    $color = '#EF629E';
+                    $status = 'Canceled';
+                }
+                ?>
                 <hr>
-                <table class="w-100">
-                    <tr style=" font-size: 24px; font-weight: 600;">
-                        <td>Total</td>
-                        <td style="text-align: right;"><?= short_rp($total) ?></td>
+                <table class="pt-2 w-100">
+                    <tr style="font-size: 12px;">
+                        <td><?= tanggal_indo($cart->tanggal_awal) ?> - <?= tanggal_indo($cart->tanggal_akhir) ?></td>
+                        <td style="text-align: right;">Total fee:</td>
+                    </tr>
+                    <tr style="font-size: 24px; font-weight: 600;">
+                        <td><?= $cart->deskripsi ?></td>
+                        <td style="text-align: right;"><?= short_rp($cart->fee) ?></td>
+                    </tr>
+                    <tr style="font-size: 15px; background: #ECECEC;">
+                        <td>Tukang: <?= $cart->nama_tukang ?> | bos: <?= $cart->nama_pemesan ?></td>
+                        <td style="text-align: right; color:<?= $color ?>;"><?= $status ?></td>
+                    </tr>
                 </table>
-            </div>
+            <?php } ?>
+            <!-- <hr>
+            <table class="w-100">
+                <tr style=" font-size: 24px; font-weight: 600;">
+                    <td>Total</td>
+                    <td style="text-align: right;"><?php// short_rp($total) ?></td>
+            </table> -->
         </div>
     </div>
-</main>
+</div>
+
 
 
 <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel" style="border-radius: 20px;">

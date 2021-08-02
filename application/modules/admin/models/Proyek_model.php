@@ -7,7 +7,8 @@ class Proyek_model extends CI_Model
     public function getAll()
     {
         $this->db->select("{$this->tabel}.*, pemesan.nama as nama_pemesan, tukang.nama as nama_tukang");
-        $this->db->where(["{$this->tabel}.status >" => 1]);
+        // $this->db->where(["{$this->tabel}.status >" => 1]);
+        $this->db->order_by('id_proyek', 'DESC');
         $query = $this->db->join('pemesan', "pemesan.id_pemesan = {$this->tabel}.id_pemesan", "left")->join('tukang', "tukang.id_tukang = {$this->tabel}.id_tukang", "left")->get($this->tabel)->result();
         return $query;
     }

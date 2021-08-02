@@ -47,6 +47,12 @@ class Proyek extends CI_Controller
         redirect(__ADMIN . 'proyek');
     }
 
+    public function update_canceled($id)
+    {
+        $this->Proyek_model->updateStatus($id, 0);
+        redirect(__ADMIN . 'proyek');
+    }
+
     public function delete($id)
     {
 

@@ -11,5 +11,6 @@ class Proyek extends CI_Controller
     public function addToCart()
     {
         $this->Proyek_model->addToCart();
+        redirect('history');
     }
 }
