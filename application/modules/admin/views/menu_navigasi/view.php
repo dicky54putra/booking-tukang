@@ -74,14 +74,14 @@ $parent = $this->db->get_where('menu_navigasi', ['id_menu_navigasi' => $data->id
                                     'role' => 1,
                                     'nama' => 'Admin'
                                 ],
-                                [
-                                    'role' => 2,
-                                    'nama' => 'Guru'
-                                ],
-                                [
-                                    'role' => 3,
-                                    'nama' => 'Siswa'
-                                ],
+                                // [
+                                //     'role' => 2,
+                                //     'nama' => 'Guru'
+                                // ],
+                                // [
+                                //     'role' => 3,
+                                //     'nama' => 'Siswa'
+                                // ],
                             ];
                             ?>
                             <form action="<?= base_url(__ADMIN . 'menu_navigasi/role/' . $data->id_menu_navigasi) ?>" method="post">
