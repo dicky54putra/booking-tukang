@@ -58,6 +58,8 @@ $route['register'] = 'home/register';
 $route['home/(:num)'] = 'home/home/detail/$1';
 
 $route['proyek/add-to-cart'] = 'home/proyek/addToCart';
+$route['proyek/get-proyek/(:any)'] = 'home/proyek/getProyek/$1';
+$route['proyek/update-skor/(:any)'] = 'home/proyek/updateSkor/$1';
 
 $route['profile'] = 'home/profile';
 $route['profile/cart'] = 'home/profile/cart';

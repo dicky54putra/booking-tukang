@@ -39,13 +39,21 @@
                         <td>Tukang: <?= $cart->nama_tukang ?> | bos: <?= $cart->nama_pemesan ?></td>
                         <td style="text-align: right; color:<?= $color ?>;"><?= $status ?></td>
                     </tr>
+                    <?php if ($cart->status == 3) { ?>
+                        <tr style="font-size: 15px;">
+                            <td>Penilaian:</td>
+                            <td style="text-align: right; ">
+                                <span class="badge bg-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#penilaian" aria-controls="offcanvasBottom" onclick="getProyek(<?= $cart->id_proyek ?>);"><?= $cart->skor ?? 0 ?></span>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </table>
             <?php } ?>
             <!-- <hr>
             <table class="w-100">
                 <tr style=" font-size: 24px; font-weight: 600;">
                     <td>Total</td>
-                    <td style="text-align: right;"><?php// short_rp($total) ?></td>
+                    <td style="text-align: right;"><?= short_rp($total) ?></td>
             </table> -->
         </div>
     </div>
@@ -77,6 +85,21 @@
     </div>
 </div>
 
+
+<div class="offcanvas offcanvas-bottom" tabindex="-1" id="penilaian" aria-labelledby="offcanvasBottomLabel" style="border-radius: 20px;">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title text-start" id="offcanvasBottomLabel">Filter</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body small">
+        <form action="" method="post" id="formEditSkor" name="formEditSkor" class="needs-validation">
+            <input type="number" min="1" max="10" class="form-control mb-3" id="nilai" placeholder="Nilai" name="nilai">
+
+            <button type="submit" class="btn btn-primary w-100 mb-5">NILAI</button>
+        </form>
+    </div>
+</div>
+
 <script>
     const tAwal = document.getElementById('tanggal_awal')
     const tAkhir = document.getElementById('tanggal_akhir')
@@ -90,5 +113,18 @@
         const dateTAkhir = new Date(tAkhir.value)
         const dateTAwal = new Date(tAwal.value)
         tAwal.setAttribute("max", tAkhir.value)
+    }
+
+    const getProyek = id => {
+        const form = document.getElementById('formEditSkor')
+        const form_url = `<?= base_url('proyek/update-skor/') ?>`
+        const nilai = document.getElementById('nilai')
+        fetch(`<?= base_url('proyek/get-proyek/') ?>${id}`)
+            .then(response => response.json())
+            .then(data => {
+                form.setAttribute('action', `${form_url}${id}`)
+                nilai.value = data.skor
+            })
+            .catch(err => console.log(err))
     }
 </script>

@@ -32,6 +32,18 @@ class Proyek_model extends CI_Model
         return $this->db->get()->result();
     }
 
+    public function getOne($id)
+    {
+        return $this->db->get_where($this->tabel, ['id_proyek' => $id])->row();
+    }
+
+    public function updateSkor($id)
+    {
+        $this->db->where(['id_proyek' => $id]);
+        $this->db->update($this->tabel, ['skor' => $this->input->post('nilai')]);
+        return true;
+    }
+
     public function getSearch()
     {
         $tanggal_awal = $this->_post('tanggal_awal');
@@ -76,7 +88,7 @@ class Proyek_model extends CI_Model
         ];
 
         $this->db->insert($this->tabel, $data);
-        redirect($url);
+        redirect('history');
     }
 
     public function updateStatus($id = [], $status)

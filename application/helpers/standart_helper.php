@@ -308,3 +308,26 @@ function selected_option($param, $value)
 {
     return ($param == $value) ? 'selected' : '';
 }
+
+function skor($id)
+{
+    $query = get_instance()->db->query("SELECT skor FROM proyek WHERE status = 3 AND id_tukang = {$id}")->result();
+
+    if (!empty($query)) {
+        $total_skor = 0;
+        foreach ($query as $q) {
+            $total_skor += $q->skor;
+        }
+
+        $skor = $total_skor / (get_instance()->total_proyek($id) ?? 1);
+        return "{$skor}/10";
+    }
+
+    return "Belum ada nilai";
+}
+
+function total_proyek($id)
+{
+    $query_count = get_instance()->db->query("SELECT COUNT(*) as qty FROM proyek WHERE status = 3 AND id_tukang = {$id}")->row();
+    return $query_count->qty;
+}

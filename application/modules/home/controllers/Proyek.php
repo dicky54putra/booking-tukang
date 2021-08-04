@@ -13,4 +13,16 @@ class Proyek extends CI_Controller
         $this->Proyek_model->addToCart();
         redirect('history');
     }
+
+    public function getProyek($id)
+    {
+        $query = $this->Proyek_model->getOne($id);
+        echo json_encode($query);
+    }
+
+    public function updateSkor($id)
+    {
+        $query = $this->Proyek_model->updateSkor($id);
+        redirect('history');
+    }
 }
