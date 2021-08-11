@@ -10,7 +10,7 @@
     </div>
 </section>
 
-<div class="container justify-content-center">
+<div class="container justify-content-center" style="margin-bottom: 70px;">
     <div class="row">
         <?php foreach ($tukangs as $tukang) { ?>
             <?php

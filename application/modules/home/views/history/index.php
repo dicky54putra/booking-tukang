@@ -13,10 +13,10 @@
                 $total += $cart->fee;
                 if ($cart->status == 1) {
                     $color = '#ffc107';
-                    $status = 'Order';
+                    $status = 'On Progress';
                 } else if ($cart->status == 2) {
                     $color = '#0d6efd';
-                    $status = 'Proses';
+                    $status = 'Lunas';
                 } else if ($cart->status == 3) {
                     $color = '#198754';
                     $status = 'Selesai';
