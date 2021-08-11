@@ -7,8 +7,8 @@
             <p class="profesi">Tukang</p>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="col-11 col-md-8 col-lg-6">
+    <div class="row justify-content-center" style="margin-bottom: 70px;">
+        <div class="col-11 col-md-8 col-lg-6 table-responsive">
             <table style="width: 100%;">
                 <tr>
                     <th colspan="2">Data Pribadi</th>
@@ -71,11 +71,15 @@
                 <tr>
                     <td colspan="2"><a href="<?= base_url('profile/edit-akun') ?>" class="btn btn-primary w-100 mt-3">PERBARUI DATA AKUN</a></td>
                 </tr>
+                <tr>
+                    <td colspan="2">
+                        <form action="<?= base_url('logout') ?>" method="post">
+                            <input type="hidden" name="isPost" value="true">
+                            <button type="submit" class="btn btn-danger w-100 mt-3 mb-3">LOGOUT</button>
+                        </form>
+                    </td>
+                </tr>
             </table>
-            <form action="<?= base_url('logout') ?>" method="post">
-                <input type="hidden" name="isPost" value="true">
-                <button type="submit" class="btn btn-danger w-100 mt-3 mb-3">LOGOUT</button>
-            </form>
         </div>
     </div>
 
