@@ -35,12 +35,14 @@
                     <tr>
                         <td>Rating</td>
                         <td>:</td>
-                        <td><?= skor($tukang->id_tukang) ?></td>
+                        <td><?= skor($tukang->id_tukang)
+                            ?></td>
                     </tr>
                     <tr>
                         <td>Total Proyek Selesai</td>
                         <td>:</td>
-                        <td><?= total_proyek($tukang->id_tukang) ?></td>
+                        <td><?= total_proyek($tukang->id_tukang)
+                            ?></td>
                     </tr>
                 </table>
                 <button class="btn btn-primary mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom" aria-controls="offcanvasBottom">Pilih Tukang</button>

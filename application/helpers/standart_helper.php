@@ -319,7 +319,7 @@ function skor($id)
             $total_skor += $q->skor;
         }
 
-        $skor = $total_skor / (get_instance()->total_proyek($id) ?? 1);
+        $skor = $total_skor / (total_proyek($id) ?? 1);
         return "{$skor}/10";
     }
 
@@ -329,5 +329,5 @@ function skor($id)
 function total_proyek($id)
 {
     $query_count = get_instance()->db->query("SELECT COUNT(*) as qty FROM proyek WHERE status = 3 AND id_tukang = {$id}")->row();
-    return $query_count->qty;
+    return (int)$query_count->qty;
 }
