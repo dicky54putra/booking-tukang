@@ -54,10 +54,10 @@
                                             echo 'Order';
                                         } else if ($val->status == 2) {
                                             $color = '#0d6efd';
-                                            echo 'Proses';
+                                            echo 'On Progress';
                                         } else if ($val->status == 3) {
                                             $color = '#198754';
-                                            echo 'Selesai';
+                                            echo 'Lunas';
                                         } else {
                                             echo "Canceled";
                                         }
@@ -72,7 +72,7 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                             <!-- <a class="dropdown-item" href="<?php// base_url(__ADMIN . 'proyek/update_selesai/') . $val->id_proyek ?>">Selesai</a> -->
-                                            <a class="dropdown-item" href="<?= base_url(__ADMIN . 'proyek/update_proses/') . $val->id_proyek ?>">Proses</a>
+                                            <a class="dropdown-item" href="<?= base_url(__ADMIN . 'proyek/update_proses/') . $val->id_proyek ?>">On Progress</a>
                                             <a class="dropdown-item" href="<?= base_url(__ADMIN . 'proyek/update_canceled/') . $val->id_proyek ?>">Canceled</a>
                                         </div>
                                         <?php } else { ?>
@@ -81,7 +81,7 @@
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                             <!-- <a class="dropdown-item" href="<?php// base_url(__ADMIN . 'proyek/update_selesai/') . $val->id_proyek ?>">Selesai</a> -->
-                                            <a class="dropdown-item" href="<?= base_url(__ADMIN . 'proyek/update_proses/') . $val->id_proyek ?>">Proses</a>
+                                            <a class="dropdown-item" href="<?= base_url(__ADMIN . 'proyek/update_proses/') . $val->id_proyek ?>">On Progress</a>
                                             <a class="dropdown-item" href="<?= base_url(__ADMIN . 'proyek/update_canceled/') . $val->id_proyek ?>">Canceled</a>
                                         </div>
                                         <a class="btn btn-danger" href="<?= base_url(__ADMIN . 'proyek/update_selesai/') . $val->id_proyek ?>">Bayar <i class="fas fa-hand-holding-usd"></i></a>

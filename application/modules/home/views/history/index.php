@@ -13,13 +13,13 @@
                 $total += $cart->fee;
                 if ($cart->status == 1) {
                     $color = '#ffc107';
-                    $status = 'On Progress';
+                    $status = 'Order';
                 } else if ($cart->status == 2) {
                     $color = '#0d6efd';
-                    $status = 'Lunas';
+                    $status = 'On Progress';
                 } else if ($cart->status == 3) {
                     $color = '#198754';
-                    $status = 'Selesai';
+                    $status = 'Lunas';
                 } else {
                     $color = '#EF629E';
                     $status = 'Canceled';
